@@ -28,6 +28,7 @@ classes = ['World', 'Sports', 'Business', 'Sci/Tech']
 
 model = CheckNews(len(vocab)).to(device)
 model.load_state_dict(torch.load('news_model.pth', map_location=device))
+# model.to(device) # may be we don't need this string
 model.eval()
 
 text_app = FastAPI(title='Text')
