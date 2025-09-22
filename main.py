@@ -37,13 +37,16 @@ text_app = FastAPI(title='Text')
 class TextIn(BaseModel):
     text: str
 
+
 tokenizer = get_tokenizer('basic_english')
+
 
 def preprocess(text: str):
     tokens = tokenizer(text)
     ids = [vocab[i] for i in tokens]
     tensor = torch.tensor(ids, dtype=torch.long).unsqueeze(0).to(device)
     return tensor
+
 
 @text_app.post('/predict')
 async def predict(item: TextIn):
@@ -56,5 +59,3 @@ async def predict(item: TextIn):
 
 if __name__ == '__main__':
     uvicorn.run(text_app, host='127.0.0.1', port=8000)
-
-
