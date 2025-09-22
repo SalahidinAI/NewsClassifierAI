@@ -44,7 +44,7 @@ tokenizer = get_tokenizer('basic_english')
 def preprocess(text: str):
     tokens = tokenizer(text)
     ids = [vocab[i] for i in tokens]
-    tensor = torch.tensor(ids, dtype=torch.long).unsqueeze(0).to(device)
+    tensor = torch.tensor(ids, dtype=torch.int64).unsqueeze(0).to(device)
     return tensor
 
 
